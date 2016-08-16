@@ -3,7 +3,7 @@
 PL2Edit is a GNU/Linux editor for the
 [Ploytec &pi;&#955;&#178;](http://www.ploytec.com/pl2/) (PL2) synthesizer.
 
-![PL2Edit screenshot](https://raw.githubusercontent.com/MaurizioB/PL2Edit/master/data/art/screenshot-main.jpg)
+![PL2Edit screenshot](https://raw.githubusercontent.com/MaurizioB/PL2Edit/master/data/art/screenshot-main-small.jpg)
 
 It is based on the Windows official software from Ploytec, offers a very similar
 interface, while adding some features.
