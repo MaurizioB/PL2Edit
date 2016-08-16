@@ -1,9 +1,9 @@
 # PL2Edit
 
-PL2Edit is GNU/Linux editor for the
+PL2Edit is a GNU/Linux editor for the
 [Ploytec &pi;&#955;&#178;](http://www.ploytec.com/pl2/) (PL2) synthesizer.
 
-
+![PL2Edit screenshot](https://raw.githubusercontent.com/MaurizioB/PL2Edit/master/data/art/screenshot-main.jpg)
 
 It is based on the Windows official software from Ploytec, offers a very similar
 interface, while adding some features.
@@ -67,7 +67,8 @@ pyALSA).
 
 ##Aknowledgments
 Some small portions of code come from (or are "based" on)
-[mididings](das.nasophon.de/mididings/), a powerful MIDI router and processor.
+[mididings](http://das.nasophon.de/mididings/), a powerful MIDI router and
+processor.
 At first PL2Edit used it, but I realized that there was no need for that and
 then I switched to pure ALSA-python. Still, some concepts behind it were useful
 and I used them.
