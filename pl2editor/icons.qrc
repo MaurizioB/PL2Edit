@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>bolt.png</file>
+  </qresource>
+  <qresource prefix="appIcons">
+    <file>pl2edit.ico</file>
+    <file>pl2edit-256.png</file>
+    <file>pl2edit-16.png</file>
+    <file>pl2edit-24.png</file>
+    <file>pl2edit-32.png</file>
+    <file>pl2edit-48.png</file>
+    <file>pl2edit-64.png</file>
+    <file>pl2edit-96.png</file>
+    <file>pl2edit-128.png</file>
+  </qresource>
+</RCC>
