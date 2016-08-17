@@ -54,6 +54,7 @@ Then you will be able to uninstall it by launching
 ## Usage
 If you installed PL2Edit as descripted above, just launch ```pl2edit```,
 otherwise run this command from the main program directory:
+
     ./pl2edit
 
 
