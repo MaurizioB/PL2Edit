@@ -26,5 +26,6 @@ setup(
     include_package_data=True,
     scripts = [
         'pl2edit.py',
+        'pl2edit', 
     ],
 )
