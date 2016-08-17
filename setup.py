@@ -30,7 +30,7 @@ setup(
     url = info['__codeurl__'],
     description = 'Editor for Ploytec PL2 synthesizer',
     license = 'GPL',
-    install_requires = ['alsaseq'], 
+    install_requires = ['pyalsa'], 
     packages = [
         'pl2editor',
     ],

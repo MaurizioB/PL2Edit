@@ -36,26 +36,26 @@ there's no guarantee that it will work properly.
 
 Run this command within the package directory:
 
-    python setup.py install
+    $ python setup.py install
 
 If you want to install PL2Edit locally (without *root* permissions), use this:
 
-    python setup.py install --user
+    $ python setup.py install --user
 
 To keep track of installed files, use this command:
 
-    python setup.py install --record files.txt
+    $ python setup.py install --record files.txt
 
 Then you will be able to uninstall it by launching
 
-    cat files.txt | xargs rm -rf
+    $ cat files.txt | xargs rm -rf
 
 
 ## Usage
 If you installed PL2Edit as descripted above, just launch ```pl2edit```,
 otherwise run this command from the main program directory:
 
-    ./pl2edit
+    $ ./pl2edit
 
 
 ### Midi connections
