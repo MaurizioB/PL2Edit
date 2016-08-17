@@ -17,11 +17,12 @@ edited using MIDI Control messages.
 
 ## Features
 - Control every parameter of the synthesizer
+- Create custom templates with user programs and controller mappings, with
+user program names
 - Create custom MIDI mappings from external controllers, expecially useful if
 you can't/don't want to change controller parameters or you need a common
 automation interface in your DAW.
 - Load/save PL2 programs (exported/imported with the official software)
-- Create custom templates with user programs and controller mappings
 
 
 ## Requirements
@@ -29,9 +30,28 @@ automation interface in your DAW.
 - PyQt4 at least version 4.11.1
 - pyalsa
 
+## Installation
+**WARNING**: this is still experimental. While it shouldn't break anything,
+there's no guarantee that it will work properly.
+
+Run this command within the package directory:
+    python setup.py install
+
+If you want to install PL2Edit locally (without *root* permissions), use this:
+    python setup.py install --user
+
+To keep track of installed files, use this command:
+    python setup.py install --record files.txt
+
+Then you will be able to uninstall it by launching
+    cat files.txt | xargs rm -rf
+
+
 ## Usage
-Just run this command from the main program directory:
-    ./pl2editor.py
+If you installed PL2Edit as descripted above, just launch ```pl2edit```,
+otherwise run this command from the main program directory:
+    ./pl2edit
+
 
 ### Midi connections
 Select "MIDI setup" from the menu "Settings", double click a MIDI port to 
