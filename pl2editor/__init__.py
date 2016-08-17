@@ -1,24 +1,29 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
+#
+# Copyright (C) 2016 Maurizio Berti <maurizio.berti@gmail.com>
+#
 
-import sys, os
+import sys
+from os import path
 from copy import copy
 from random import randrange
 from PyQt4 import QtCore, QtGui, uic
-from extra import *
 import icons
+from extra import *
 from midiutils import *
 from dialogs import *
-
+from info import __version__, __codeurl__, __website__
 simple_values = [0, 1]+[i for i in range(3, 25)]+[26]
 bit_values = [2, 25]
 ClientRole = 32
 PortRole = 33
 
-_path = os.path.dirname(os.path.abspath(__file__))
+_path = path.dirname(path.abspath(__file__))
+print _path
 
 def _load_ui(widget, ui_path):
-    return uic.loadUi(os.path.join(_path, ui_path), widget)
+    return uic.loadUi(path.join(_path, ui_path), widget)
 
 class MidiSeq(QtCore.QObject):
     client_start = QtCore.pyqtSignal(object)
@@ -758,7 +763,7 @@ class Editor(QtGui.QMainWindow):
             item = self.program_model.item(index)
             item.prog_data = prog_data
             if index >= 32:
-                name = os.path.basename(str(res.toLatin1()))
+                name = path.basename(str(res.toLatin1()))
                 if name.endswith('.pl2'):
                     name = name[:-4]
                 item.setText(name)
@@ -849,7 +854,7 @@ class Editor(QtGui.QMainWindow):
 
     def template_save_as(self):
         if self.template_file and str(self.template_file).endswith('pl2t'):
-            name = os.path.basename(self.template_file)
+            name = path.basename(self.template_file)
         else:
             name = ''
         res = QtGui.QFileDialog.getSaveFileName(self, 'Save PL2 template to...', name, filter=('PL2 template files (*.pl2t)'))
@@ -1335,10 +1340,12 @@ class Editor(QtGui.QMainWindow):
     def about(self):
         title = self.windowTitle()
         title.insert(0, 'About ')
-        text = '''<b>Ploytec &pi;&lambda;&sup2; Editor</b><br>
-                  created by Maurizio Berti<br><br>
-                  based on the original editor from <a href="http://www.ploytec.com/">Ploytec GmbH</a><br>
-                  uses code portions of <a href="http://das.nasophon.de/mididings/">mididings</a>.'''
+        text = '''<b>Ploytec &pi;&lambda;&sup2; Editor v. {version}</b><br>
+                  Created by <a href="{web}">Maurizio Berti</a><br><br>
+                  Based on the original editor from <a href="http://www.ploytec.com/">Ploytec GmbH</a><br>
+                  Uses code portions of <a href="http://das.nasophon.de/mididings/">mididings</a>.<br><br>
+                  Source code available on <a href="{code}">GitHub</a>
+                  '''.format(version=__version__, web=__website__, code=__codeurl__)
         QtGui.QMessageBox.about(self, title, text)
 
     def settings_save(self):

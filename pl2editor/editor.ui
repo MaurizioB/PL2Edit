@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Ploytec πλ² Editor</string>
+   <string>PL2Edit - Ploytec πλ² Editor</string>
   </property>
   <property name="windowIcon">
    <iconset resource="icons.qrc">
@@ -1726,6 +1726,9 @@
       </item>
       <item>
        <widget class="QSlider" name="portamentoTime_slider">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="sizePolicy">
          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -1751,6 +1754,9 @@
       </item>
       <item>
        <widget class="QSpinBox" name="portamentoTime_spin">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
         </property>
@@ -1890,7 +1896,7 @@
    </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
-     <string>Settings</string>
+     <string>Settin&amp;gs</string>
     </property>
     <addaction name="actionMidiShow"/>
     <addaction name="actionSettings"/>
@@ -2041,7 +2047,7 @@
   </action>
   <action name="actionMidiShow">
    <property name="text">
-    <string>&amp;MIDI configuration...</string>
+    <string>&amp;MIDI setup...</string>
    </property>
   </action>
   <action name="actionSettings">
