@@ -35,15 +35,19 @@ automation interface in your DAW.
 there's no guarantee that it will work properly.
 
 Run this command within the package directory:
+
     python setup.py install
 
 If you want to install PL2Edit locally (without *root* permissions), use this:
+
     python setup.py install --user
 
 To keep track of installed files, use this command:
+
     python setup.py install --record files.txt
 
 Then you will be able to uninstall it by launching
+
     cat files.txt | xargs rm -rf
 
 
