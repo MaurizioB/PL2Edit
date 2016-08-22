@@ -20,7 +20,7 @@ ClientRole = 32
 PortRole = 33
 
 _path = path.dirname(path.abspath(__file__))
-print _path
+#print _path
 
 def _load_ui(widget, ui_path):
     return uic.loadUi(path.join(_path, ui_path), widget)
