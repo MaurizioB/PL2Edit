@@ -1,3 +1,4 @@
+import string
 from PyQt4 import QtGui, QtCore
 from midiutils import BlackKeys
 from collections import namedtuple
@@ -448,10 +449,10 @@ class SettingsObj(object):
     def __init__(self, settings):
         self._settings = settings
         self._sdata = []
-        self.load()
+        self._load()
         self._done = True
 
-    def load(self):
+    def _load(self):
         for d in self._sdata:
             delattr(self, d)
         self._sdata = []
@@ -460,21 +461,37 @@ class SettingsObj(object):
         self._sdata.append('gGeneral')
         for g in self._settings.childGroups():
             self._settings.beginGroup(g)
-            gname = 'g{}'.format(_decode(g))
+            gname = 'g{}'.format(self._decode(g))
             self._sdata.append(gname)
             setattr(self, gname, SettingsGroup(self._settings))
             self._settings.endGroup()
+
+    def __getattr__(self, name):
+        if not (name.startswith('g') and name[1] in string.ascii_uppercase):
+            raise AttributeError
+        name = name[1:]
+        self._settings.beginGroup(name)
+        gname = 'g{}'.format(self._decode(name))
+        self._sdata.append(gname)
+        new_group = SettingsGroup(self._settings)
+        setattr(self, gname, new_group)
+        self._settings.endGroup()
+        return new_group
 
     def sync(self):
         self._settings.sync()
 
     def createGroup(self, name):
         self._settings.beginGroup(name)
-        gname = 'g{}'.format(_decode(name))
+        gname = 'g{}'.format(self._decode(name))
         self._sdata.append(gname)
         setattr(self, gname, SettingsGroup(self._settings))
         self._settings.endGroup()
 
+    def _decode(self, txt):
+        txt = txt.replace('_', '__')
+        txt = txt.replace(' ', '_')
+        return txt
 
 
 
