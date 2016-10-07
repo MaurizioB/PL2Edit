@@ -102,7 +102,7 @@ class MidiSeq(QtCore.QObject):
                     except Exception as e:
                         print 'event {} unrecognized'.format(event)
                         print e
-        print 'stopped'
+        print 'MIDI engine stopped'
         self.stopped.emit()
 
     def event_send(self, *events):
@@ -463,10 +463,10 @@ class Editor(QtGui.QMainWindow):
         self.start_connections()
 
         #applying settings
-        self._input1_channel = self.settings.gMIDI.get_Input1_channel(-1, True) + 1
-        self._input2_channel = self.settings.gMIDI.get_Input2_channel(-1, True) + 1
-        self._channel1 = self.settings.gMIDI.get_Output1_channel(0, True) + 1
-        self._channel2 = self.settings.gMIDI.get_Output2_channel(0, True) + 1
+        self._input1_channel = self.settings.gMIDI.get_Input1_channel(-1, True)
+        self._input2_channel = self.settings.gMIDI.get_Input2_channel(-1, True)
+        self._channel1 = self.settings.gMIDI.get_Output1_channel(0, True)
+        self._channel2 = self.settings.gMIDI.get_Output2_channel(0, True)
         self.output = self.settings.gGeneral.get_Output(0, True)
         self.output_combo.blockSignals(True)
         self.output_combo.setCurrentIndex(self.output)
@@ -1303,6 +1303,7 @@ class Editor(QtGui.QMainWindow):
     def midi_event(self, event):
         if event.port == 0:
             if not self._input1_channel == -1 and self._input1_channel != event.channel:
+                print 'son qui'
                 return
         elif event.port == 1:
             if not self._input2_channel == -1 and self._input2_channel != event.channel:
@@ -1356,6 +1357,10 @@ class Editor(QtGui.QMainWindow):
         self.settings.gMIDI.set_Input2(get_connections(self.midiseq.input[1], 'src'))
         self.settings.gMIDI.set_Output1(get_connections(self.midiseq.output[0], 'dest'))
         self.settings.gMIDI.set_Output2(get_connections(self.midiseq.output[1], 'dest'))
+        self.settings.gMIDI.set_Input1_channel(self._input1_channel)
+        self.settings.gMIDI.set_Input2_channel(self._input2_channel)
+        self.settings.gMIDI.set_Output1_channel(self._channel1)
+        self.settings.gMIDI.set_Output2_channel(self._channel2)
         self.settings.sync()
 
     def closeEvent(self, event):

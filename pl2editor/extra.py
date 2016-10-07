@@ -430,17 +430,16 @@ class SettingsGroup(object):
         try:
             orig = super(SettingsGroup, self).__getattribute__(name[4:])
             if isinstance(orig, bool):
-                obj = type(str(type(orig)), (object,), {'value': orig})()
-                obj.__class__.__call__ = lambda x,  y=None, save=False:orig
+                obj = type(type(orig).__name__, (object,), {'value': orig})()
+                obj.__class__.__call__ = lambda x,  y=None, save=False, orig=orig: orig
                 obj.__class__.__len__ = lambda x: orig
                 obj.__class__.__eq__ = lambda x, y: True if x.value==y else False
             else:
-                obj = type(str(type(orig)), (type(orig), ), {})(orig)
-                obj.__class__.__call__ = lambda x, y=None, save=False:x
+                obj = type(type(orig).__name__, (type(orig), ), {})(orig)
+                obj.__class__.__call__ = lambda x, y=None, save=False, orig=orig: orig
             return obj
-        except Exception as e:
-            print 'exc: {}'.format(e)
-            print '{} not found'.format(name[4:])
+        except AttributeError:
+            print 'Setting {} not found, returning default'.format(name[4:])
             obj = type('obj', (object,), {})()
             obj.__class__.__call__ = lambda x, y=None, save=False:y if not save else save_func(y)
             return obj
